@@ -6,9 +6,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const giftBox = document.getElementById("gift-box");
     const letterSection = document.getElementById("letter-section");
     const videoSection = document.getElementById("video-section");
-    const showVideoButton = document.getElementById("show-video-button");
+
+    // Start with only the intro visible
+    introContent.style.display = "block";
+    giftSection.classList.add("hidden");
+    letterSection.classList.add("hidden");
+    videoSection.classList.add("hidden");
 
 
+    // BEGIN THE SURPRISE
     beginButton.addEventListener("click", function () {
 
         introContent.style.display = "none";
@@ -17,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
+    // OPEN THE GIFT
     giftBox.addEventListener("click", function () {
 
         giftBox.style.animation = "giftOpen 0.5s ease forwards";
@@ -49,25 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-    showVideoButton.addEventListener("click", function () {
-
-        videoSection.classList.remove("hidden");
-
-        videoSection.style.display = "flex";
-
-        videoSection.hidden = false;
-
-        setTimeout(function () {
-
-            videoSection.scrollIntoView({
-                behavior: "smooth"
-            });
-
-        }, 200);
-
-    });
-
-
+    // CONFETTI
     function createConfetti() {
 
         for (let i = 0; i < 80; i++) {
