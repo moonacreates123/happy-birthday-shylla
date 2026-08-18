@@ -61,11 +61,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 videoSection.style.setProperty("display", "flex", "important");
 
                 // Reload the video after it becomes visible
-                video.load();
+               video.pause();
+video.removeAttribute("src");
 
-video.addEventListener("canplay", function () {
-    console.log("Video is ready to play.");
-});
+setTimeout(function () {
+    video.src = "./shylla-video.mp4";
+    video.load();
+}, 300);
+
+
 
             }, 1000);
 
