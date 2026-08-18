@@ -7,30 +7,26 @@ document.addEventListener("DOMContentLoaded", function () {
     const letterSection = document.getElementById("letter-section");
     const videoSection = document.getElementById("video-section");
 
-    // Make sure the correct starting screen is visible
+    // INITIAL STATE
     introContent.style.display = "block";
-    giftSection.classList.add("hidden");
-    letterSection.classList.add("hidden");
-    videoSection.classList.add("hidden");
+    giftSection.style.display = "none";
+    letterSection.style.display = "none";
+    videoSection.style.display = "none";
 
 
-    // BEGIN SURPRISE
+    // BEGIN
     beginButton.addEventListener("click", function () {
 
-        // Hide only the intro text and button
         document.querySelector(".small-text").style.display = "none";
         document.getElementById("intro-title").style.display = "none";
         document.getElementById("intro-message").style.display = "none";
         beginButton.style.display = "none";
 
-        // Show the gift
-        giftSection.classList.remove("hidden");
         giftSection.style.display = "flex";
-
     });
 
 
-    // OPEN GIFT
+    // GIFT
     giftBox.addEventListener("click", function () {
 
         giftBox.style.animation = "giftOpen 0.5s ease forwards";
@@ -47,8 +43,6 @@ document.addEventListener("DOMContentLoaded", function () {
             document.querySelector(".tap-message").textContent =
                 "Your surprise has only just begun...";
 
-            // Show letter
-            letterSection.classList.remove("hidden");
             letterSection.style.display = "flex";
 
             setTimeout(function () {
@@ -59,17 +53,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
             }, 300);
 
-            // Show video after the letter
-            setTimeout(function () {
-
-                videoSection.classList.remove("hidden");
-                videoSection.style.display = "flex";
-
-            }, 1200);
-
         }, 500);
 
     });
+
+
+    // SHOW VIDEO WHEN USER REACHES THE END OF THE LETTER
+    const observer = new IntersectionObserver(function (entries) {
+
+        entries.forEach(function (entry) {
+
+            if (entry.isIntersecting) {
+
+                videoSection.style.display = "flex";
+
+            }
+
+        });
+
+    }, {
+        threshold: 0.1
+    });
+
+    observer.observe(letterSection);
 
 
     // CONFETTI
@@ -102,12 +108,9 @@ document.addEventListener("DOMContentLoaded", function () {
             setTimeout(function () {
                 confetti.remove();
             }, 2500);
-
         }
-
     }
 
 });
-
         
         
