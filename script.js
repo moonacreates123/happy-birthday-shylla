@@ -1,33 +1,32 @@
 document.addEventListener("DOMContentLoaded", function () {
-const video = videoSection.querySelector("video");
+
     const beginButton = document.getElementById("begin-button");
     const introContent = document.querySelector(".intro-content");
     const giftSection = document.getElementById("gift-section");
     const giftBox = document.getElementById("gift-box");
     const letterSection = document.getElementById("letter-section");
     const videoSection = document.getElementById("video-section");
+    const video = videoSection.querySelector("video");
 
-    // INITIAL STATE
+    // START
     introContent.style.display = "block";
-    giftSection.style.display = "none";
-    letterSection.style.display = "none";
-    videoSection.style.display = "none";
+    giftSection.style.setProperty("display", "none", "important");
+    letterSection.style.setProperty("display", "none", "important");
+    videoSection.style.setProperty("display", "none", "important");
 
 
-    // BEGIN
+    // BEGIN THE SURPRISE
     beginButton.addEventListener("click", function () {
 
-        document.querySelector(".small-text").style.display = "none";
-        document.getElementById("intro-title").style.display = "none";
-        document.getElementById("intro-message").style.display = "none";
-        beginButton.style.display = "none";
+        introContent.style.display = "none";
 
         giftSection.classList.remove("hidden");
-giftSection.style.setProperty("display", "flex", "important");
+        giftSection.style.setProperty("display", "flex", "important");
+
     });
 
 
-    // GIFT
+    // OPEN THE GIFT
     giftBox.addEventListener("click", function () {
 
         giftBox.style.animation = "giftOpen 0.5s ease forwards";
@@ -45,7 +44,7 @@ giftSection.style.setProperty("display", "flex", "important");
                 "Your surprise has only just begun...";
 
             letterSection.classList.remove("hidden");
-letterSection.style.setProperty("display", "flex", "important");
+            letterSection.style.setProperty("display", "flex", "important");
 
             setTimeout(function () {
 
@@ -55,30 +54,20 @@ letterSection.style.setProperty("display", "flex", "important");
 
             }, 300);
 
+            // Show video after the letter
+            setTimeout(function () {
+
+                videoSection.classList.remove("hidden");
+                videoSection.style.setProperty("display", "flex", "important");
+
+                // Reload the video after it becomes visible
+                video.load();
+
+            }, 1000);
+
         }, 500);
 
     });
-
-
-    // SHOW VIDEO WHEN USER REACHES THE END OF THE LETTER
-    const observer = new IntersectionObserver(function (entries) {
-
-        entries.forEach(function (entry) {
-
-            if (entry.isIntersecting) {
-
-               videoSection.classList.remove("hidden");
-videoSection.style.setProperty("display", "flex", "important"); 
-video.load();
-            }
-
-        });
-
-    }, {
-        threshold: 0.1
-    });
-
-    observer.observe(letterSection);
 
 
     // CONFETTI
@@ -114,6 +103,4 @@ video.load();
         }
     }
 
-});
-        
-        
+});      
