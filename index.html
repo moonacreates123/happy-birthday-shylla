@@ -30,9 +30,13 @@
                 Some people deserve more than just a birthday wish.
             </p>
 
-            <button id="begin-button">
-                ✦ Begin the Surprise ✦
-            </button>
+         <button id="begin-button" onclick="
+    document.querySelector('.intro-content').style.display='none';
+    document.getElementById('gift-section').classList.remove('hidden');
+    document.getElementById('gift-section').style.setProperty('display','flex','important');
+">
+    ✦ Begin the Surprise ✦
+</button>
 
         </section>
 
