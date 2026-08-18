@@ -22,7 +22,8 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("intro-message").style.display = "none";
         beginButton.style.display = "none";
 
-        giftSection.style.display = "flex";
+        giftSection.classList.remove("hidden");
+giftSection.style.setProperty("display", "flex", "important");
     });
 
 
@@ -43,7 +44,8 @@ document.addEventListener("DOMContentLoaded", function () {
             document.querySelector(".tap-message").textContent =
                 "Your surprise has only just begun...";
 
-            letterSection.style.display = "flex";
+            letterSection.classList.remove("hidden");
+letterSection.style.setProperty("display", "flex", "important");
 
             setTimeout(function () {
 
@@ -65,7 +67,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (entry.isIntersecting) {
 
-                videoSection.style.display = "flex";
+               videoSection.classList.remove("hidden");
+videoSection.style.setProperty("display", "flex", "important"); 
 
             }
 
