@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-
+const video = videoSection.querySelector("video");
     const beginButton = document.getElementById("begin-button");
     const introContent = document.querySelector(".intro-content");
     const giftSection = document.getElementById("gift-section");
@@ -69,7 +69,7 @@ letterSection.style.setProperty("display", "flex", "important");
 
                videoSection.classList.remove("hidden");
 videoSection.style.setProperty("display", "flex", "important"); 
-
+video.load();
             }
 
         });
