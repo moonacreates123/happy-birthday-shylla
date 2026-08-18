@@ -63,6 +63,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Reload the video after it becomes visible
                 video.load();
 
+video.addEventListener("canplay", function () {
+    console.log("Video is ready to play.");
+});
+
             }, 1000);
 
         }, 500);
