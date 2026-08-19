@@ -8,31 +8,77 @@ body {
     padding: 0;
     width: 100%;
     min-height: 100%;
+    background: #030303;
 }
 
 body {
-    background: #030303;
     color: white;
     font-family: Georgia, "Times New Roman", serif;
 }
 
-.intro {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+/* =========================
+   MAIN PAGE
+========================= */
+
+main.intro {
     position: relative;
-    overflow: hidden;
-    background:
-        radial-gradient(circle at center, #17120a 0%, #080705 35%, #030303 75%);
+    width: 100%;
+    min-height: 100vh;
+    background: #030303;
+    overflow-x: hidden;
 }
+
+
+/* =========================
+   STARS
+========================= */
+
+.stars::before,
+.stars::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        radial-gradient(
+            circle,
+            rgba(255, 215, 100, 0.8) 1px,
+            transparent 1px
+        ),
+        radial-gradient(
+            circle,
+            rgba(255, 255, 255, 0.5) 1px,
+            transparent 1px
+        );
+    background-size: 90px 90px, 130px 130px;
+    animation: starsMove 18s linear infinite;
+    opacity: 0.35;
+    z-index: 1;
+}
+
+.stars::after {
+    background-size: 170px 170px, 110px 110px;
+    animation-duration: 25s;
+    opacity: 0.2;
+}
+
+
+/* =========================
+   INTRO
+========================= */
 
 .intro-content {
     position: relative;
     z-index: 2;
-    text-align: center;
+    width: 100%;
+    min-height: 100vh;
     padding: 30px;
-    max-width: 650px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     animation: fadeIn 2s ease forwards;
 }
 
@@ -81,161 +127,175 @@ h1 {
     box-shadow: 0 0 25px rgba(200, 168, 78, 0.5);
 }
 
-.stars::before,
-.stars::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image:
-        radial-gradient(circle, rgba(255, 215, 100, 0.8) 1px, transparent 1px),
-        radial-gradient(circle, rgba(255, 255, 255, 0.5) 1px, transparent 1px);
-    background-size: 90px 90px, 130px 130px;
-    animation: starsMove 18s linear infinite;
-    opacity: 0.35;
-}
 
-.stars::after {
-    background-size: 170px 170px, 110px 110px;
-    animation-duration: 25s;
-    opacity: 0.2;
-}
+/* =========================
+   HIDDEN
+========================= */
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes starsMove {
-    from {
-        transform: translateY(0);
-    }
-
-    to {
-        transform: translateY(-90px);
-    }
-}
 .hidden {
     display: none !important;
 }
-}
+
+
+/* =========================
+   GIFT SCREEN
+========================= */
 
 #gift-section {
-    position: absolute;
-    inset: 0;
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
     z-index: 5;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: #030303;
+
+    padding: 30px 20px;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #17120a 0%,
+            #080705 42%,
+            #030303 100%
+        );
+
     animation: giftAppear 1.5s ease forwards;
 }
 
+
+/* Text above gift */
+
 .gift-message {
+    width: 100%;
+    margin: 0 0 42px;
+
     color: #f3d477;
-    font-size: 20px;
-    letter-spacing: 1px;
-    margin-bottom: 45px;
-}
 
-#gift-box {
-    width: 150px;
-    height: 130px;
-    position: relative;
-    cursor: pointer;
-    filter: drop-shadow(0 0 25px rgba(212, 170, 55, 0.45));
-    animation: giftFloat 2.5s ease-in-out infinite;
-}
-
-.gift-body {
-    position: absolute;
-    bottom: 0;
-    left: 10px;
-    width: 130px;
-    height: 85px;
-    background: linear-gradient(135deg, #151515, #050505);
-    border: 2px solid #c8a84e;
-    border-radius: 4px;
-}
-
-.gift-lid {
-    position: absolute;
-    top: 25px;
-    left: 3px;
-    width: 144px;
-    height: 28px;
-    background: #0b0b0b;
-    border: 2px solid #c8a84e;
-    border-radius: 4px;
-    z-index: 2;
-}
-
-.gift-ribbon {
-    position: absolute;
-    top: 25px;
-    left: 67px;
-    width: 17px;
-    height: 85px;
-    background: #c8a84e;
-    z-index: 3;
-}
-
-.tap-message {
-    color: #aaa;
-    margin-top: 35px;
-    font-size: 14px;
-    letter-spacing: 2px;
-    animation: pulse 1.8s ease-in-out infinite;
-}
-
-@keyframes giftFloat {
-    0%, 100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-12px);
-    }
-}
-
-@keyframes pulse {
-    0%, 100% {
-        opacity: 0.4;
-    }
-
-    50% {
-        opacity: 1;
-    }
-}
-
-@keyframes giftAppear {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-.gift-message {
-    text-align: center;
+    font-size: clamp(18px, 5vw, 22px);
     line-height: 1.6;
+    letter-spacing: 1px;
+
+    text-align: center;
 }
 
 .gift-message span {
-    font-size: 46px;
+    display: inline-block;
+    margin-top: 4px;
+
+    font-size: clamp(40px, 12vw, 52px);
     color: #f3d477;
+
     text-shadow:
         0 0 10px rgba(212, 170, 55, 0.7),
         0 0 30px rgba(212, 170, 55, 0.4);
 }
+
+
+/* Gift box */
+
+#gift-box {
+    width: 150px;
+    height: 130px;
+
+    position: relative;
+
+    cursor: pointer;
+
+    filter:
+        drop-shadow(
+            0 0 25px rgba(212, 170, 55, 0.45)
+        );
+
+    animation:
+        giftFloat 2.5s ease-in-out infinite;
+}
+
+
+/* Gift body */
+
+.gift-body {
+    position: absolute;
+
+    bottom: 0;
+    left: 10px;
+
+    width: 130px;
+    height: 85px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #151515,
+            #050505
+        );
+
+    border: 2px solid #c8a84e;
+    border-radius: 4px;
+}
+
+
+/* Gift lid */
+
+.gift-lid {
+    position: absolute;
+
+    top: 25px;
+    left: 3px;
+
+    width: 144px;
+    height: 28px;
+
+    background: #0b0b0b;
+
+    border: 2px solid #c8a84e;
+    border-radius: 4px;
+
+    z-index: 2;
+}
+
+
+/* Gift ribbon */
+
+.gift-ribbon {
+    position: absolute;
+
+    top: 25px;
+    left: 67px;
+
+    width: 17px;
+    height: 85px;
+
+    background: #c8a84e;
+
+    z-index: 3;
+}
+
+
+/* Tap message */
+
+.tap-message {
+    margin: 35px 0 0;
+
+    color: #aaa;
+
+    font-size: 14px;
+    letter-spacing: 2px;
+
+    text-align: center;
+
+    animation:
+        pulse 1.8s ease-in-out infinite;
+}
+
+
+/* =========================
+   GIFT OPENING
+========================= */
 
 @keyframes giftOpen {
 
@@ -254,12 +314,21 @@ h1 {
 
 }
 
+
+/* =========================
+   CONFETTI
+========================= */
+
 .confetti {
     position: fixed;
+
     width: 8px;
     height: 14px;
+
     background: #d4af37;
+
     z-index: 100;
+
     pointer-events: none;
 
     animation:
@@ -272,6 +341,7 @@ h1 {
         transform:
             translate(-50%, -50%)
             rotate(0deg);
+
         opacity: 1;
     }
 
@@ -282,139 +352,391 @@ h1 {
                 var(--y)
             )
             rotate(720deg);
+
         opacity: 0;
     }
 
 }
-/* Birthday Letter */
+
+
+/* =========================
+   BIRTHDAY LETTER
+========================= */
 
 #letter-section {
-  min-height: 100vh;
-  padding: 60px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background:
-    radial-gradient(circle at top, #17120a 0%, #080705 45%, #030303 100%);
-}
-
-.letter-card {
-  width: 100%;
-  max-width: 650px;
-  padding: 40px 28px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 215, 120, 0.25);
-  border-radius: 20px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(10px);
-}
-
-.letter-card h2 {
-  margin: 0 0 30px;
-  text-align: center;
-  color: #f4d58d;
-  font-size: 28px;
-  line-height: 1.3;
-}
-
-.letter-card p {
-  margin: 0 0 22px;
-  color: #f5f5f5;
-  font-size: 17px;
-  line-height: 1.8;
-  text-align: left;
-}
-
-.letter-ending {
-  margin-top: 35px !important;
-  text-align: center !important;
-  color: #f4d58d !important;
-  font-size: 20px !important;
-  font-weight: bold;
-}
-/* FINAL LAYOUT FIX */
-
-main.intro {
-    display: block !important;
     width: 100%;
     min-height: 100vh;
-}
 
-.intro-content {
-    width: 100%;
-}
+    padding:
+        70px
+        20px
+        80px;
 
-#letter-section,
-#video-section {
-    width: 100%;
     display: flex;
+
     flex-direction: column;
     align-items: center;
-    box-sizing: border-box;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #17120a 0%,
+            #080705 45%,
+            #030303 100%
+        );
 }
 
-#letter-section.hidden,
-#video-section.hidden {
-    display: none !important;
+
+/* Letter card */
+
+.letter-card {
+    width: min(90%, 650px);
+
+    padding: 40px 28px;
+
+    background:
+        rgba(255, 255, 255, 0.06);
+
+    border:
+        1px solid
+        rgba(255, 215, 120, 0.25);
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 20px 60px
+        rgba(0, 0, 0, 0.5);
+
+    backdrop-filter: blur(10px);
 }
 
-.letter-card,
-.video-card {
-    width: min(90%, 700px);
-    box-sizing: border-box;
-}
 
-.video-card video {
-    width: 100%;
-    max-width: 600px;
-    height: auto;
-    display: block;
-}
-#video-section {
-    width: 100%;
-    min-height: 100vh;
-    padding: 60px 20px;
-    box-sizing: border-box;
-}
+/* Letter heading */
 
-#video-section.hidden {
-    display: none !important;
-}
+.letter-card h2 {
+    margin: 0 0 30px;
 
-#video-section:not(.hidden) {
-    display: flex !important;
-}
-
-.video-card {
-    width: min(90%, 700px);
     text-align: center;
+
+    color: #f4d58d;
+
+    font-size: clamp(24px, 7vw, 28px);
+
+    line-height: 1.3;
+
+    text-shadow:
+        0 0 12px
+        rgba(212, 170, 55, 0.25);
 }
 
-.video-card video {
-    width: 100%;
-    max-width: 600px;
-    height: auto;
+
+/* Letter paragraphs */
+
+.letter-card p {
+    margin: 0 0 22px;
+
+    color: #f5f5f5;
+
+    font-size: 17px;
+
+    line-height: 1.8;
+
+    text-align: left;
+}
+
+
+/* =========================
+   LETTER ENDING
+========================= */
+
+.letter-ending {
+    margin-top: 40px !important;
+    margin-bottom: 0 !important;
+
+    padding-top: 12px;
+
+    text-align: center !important;
+
+    color: #f4d58d !important;
+
+    font-size: 21px !important;
+
+    font-weight: bold;
+
+    line-height: 1.6 !important;
+
+    text-shadow:
+        0 0 8px
+        rgba(212, 170, 55, 0.55),
+
+        0 0 22px
+        rgba(212, 170, 55, 0.25);
+}
+
+
+/* =========================
+   FINAL CLOSING
+========================= */
+
+.final-closing {
+    width: min(90%, 650px);
+
+    margin-top: 55px;
+
+    padding:
+        20px
+        10px
+        10px;
+
+    text-align: center;
+
+    color: #aaa;
+}
+
+
+.final-closing p {
+    margin: 18px 0 3px !important;
+
+    color: #d6d1c5;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+
+    letter-spacing: 0.5px;
+}
+
+
+.final-closing span {
     display: block;
-    margin: 20px auto;
-}
-/* FINAL VISIBILITY CONTROL */
 
-#gift-section {
-    display: none;
-}
+    color: #f3d477;
 
-#letter-section {
-    display: none;
-}
+    font-size: 16px;
 
-#video-section {
-    display: none;
+    line-height: 1.7;
+
+    letter-spacing: 0.5px;
+
+    text-shadow:
+        0 0 10px
+        rgba(212, 170, 55, 0.25);
 }
 
-#video-section video {
-    width: 100%;
-    max-width: 600px;
-    height: auto;
-    display: block;
-    margin: 20px auto;
+
+.closing-line {
+    color: #c8a84e;
+
+    font-size: 17px;
+
+    opacity: 0.75;
+
+    text-shadow:
+        0 0 10px
+        rgba(212, 170, 55, 0.5);
+}
+
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes fadeIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+@keyframes starsMove {
+
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-90px);
+    }
+
+}
+
+
+@keyframes giftFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+
+}
+
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.4;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+}
+
+
+@keyframes giftAppear {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .intro-content {
+        padding:
+            25px
+            20px;
+    }
+
+
+    .small-text {
+        letter-spacing: 3px;
+        margin-bottom: 20px;
+    }
+
+
+    #intro-message {
+        margin:
+            24px auto
+            30px;
+    }
+
+
+    #begin-button {
+        padding:
+            14px
+            24px;
+
+        font-size: 14px;
+    }
+
+
+    /* Gift */
+
+    #gift-section {
+        min-height: 100svh;
+
+        padding:
+            25px
+            20px;
+    }
+
+
+    .gift-message {
+        margin-bottom: 38px;
+
+        font-size: 18px;
+    }
+
+
+    #gift-box {
+        transform: scale(0.95);
+    }
+
+
+    .tap-message {
+        margin-top: 30px;
+
+        font-size: 13px;
+    }
+
+
+    /* Letter */
+
+    #letter-section {
+        min-height: 100svh;
+
+        padding:
+            55px
+            15px
+            70px;
+    }
+
+
+    .letter-card {
+        width: 100%;
+
+        padding:
+            30px
+            20px;
+
+        border-radius: 18px;
+    }
+
+
+    .letter-card p {
+        font-size: 16px;
+
+        line-height: 1.75;
+
+        margin-bottom: 20px;
+    }
+
+
+    .letter-card h2 {
+        margin-bottom: 27px;
+    }
+
+
+    .letter-ending {
+        font-size: 19px !important;
+
+        margin-top: 35px !important;
+    }
+
+
+    .final-closing {
+        width: 100%;
+
+        margin-top: 42px;
+
+        padding:
+            10px
+            5px;
+    }
+
+
+    .final-closing p {
+        font-size: 14px;
+    }
+
+
+    .final-closing span {
+        font-size: 15px;
+    }
+
 }
