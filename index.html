@@ -15,7 +15,9 @@
 
         <div class="stars"></div>
 
+
         <!-- INTRO -->
+
         <section class="intro-content">
 
             <p class="small-text">
@@ -30,18 +32,15 @@
                 Some people deserve more than just a birthday wish.
             </p>
 
-         <button id="begin-button" onclick="
-    document.querySelector('.intro-content').style.display='none';
-    document.getElementById('gift-section').classList.remove('hidden');
-    document.getElementById('gift-section').style.setProperty('display','flex','important');
-">
-    ✦ Begin the Surprise ✦
-</button>
+            <button id="begin-button">
+                ✦ Begin the Surprise ✦
+            </button>
 
         </section>
 
 
         <!-- GIFT -->
+
         <div id="gift-section" class="hidden">
 
             <p class="gift-message">
@@ -66,6 +65,7 @@
 
 
         <!-- BIRTHDAY LETTER -->
+
         <section id="letter-section" class="hidden">
 
             <div class="letter-card">
@@ -126,31 +126,32 @@
 
             </div>
 
-        </section>
 
+            <!-- FINAL CLOSING -->
 
-              <!-- VIDEO -->
-        <section id="video-section" class="hidden">
+            <div class="final-closing">
 
-            <div class="video-card">
+                <div class="closing-line">
+                    ✦
+                </div>
 
-                <h2>
-                    And now... one more thing 😂🖤
-                </h2>
-<video
-    controls
-    playsinline
-    preload="auto"
-    width="600"
-    style="width:100%; max-width:600px; height:auto; min-height:250px; display:block; margin:20px auto; object-fit:contain;"
-> 
-             <source src="./shylla-video.mp4.mov" type="video/quicktime">    
-                    Your browser does not support the video.
-                </video>
+                <p>
+                    The surprise ends here...
+                </p>
+
+                <span>
+                    but the memories don't. 🖤
+                </span>
+
+                <div class="closing-line">
+                    ✦
+                </div>
 
             </div>
 
         </section>
+
+
     </main>
 
 
